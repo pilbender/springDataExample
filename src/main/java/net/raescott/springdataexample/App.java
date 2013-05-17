@@ -36,12 +36,12 @@ public class App {
 
         logger.info("*** Named Query Results ***");
 		List<Person> personList1 = personDao.findAllNamedQuery();
-		logger.info("Person List: " + personList1);
+		logger.info("Person List 1: " + personList1);
 		logger.info("Done.");
 
         logger.info("*** Criteria Query Results ***");
         List<Person> personList2 = personDao.findAllCriteriaQuery();
-        logger.info("Person List: " + personList2);
+        logger.info("Person List 2: " + personList2);
         logger.info("Done.");
 
 		logger.info("*** Generated Repository Query Results ***");
@@ -55,8 +55,8 @@ public class App {
 		logger.info("Done.");
 
 		logger.info("*** Override Repository with @NamedQuery Results ***");
-		Person person5 = personRepositoryGenerated.findByName("richard");
-		logger.info("Person 5: " + person5);
+		List<Person> personList3 = personRepositoryGenerated.findAll();
+		logger.info("Person List 3: " + personList3);
 		logger.info("Done.");
 	}
 }
