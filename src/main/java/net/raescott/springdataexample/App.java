@@ -1,6 +1,7 @@
 package net.raescott.springdataexample;
 
-import net.raescott.springdataexample.repository.PersonRepository;
+import net.raescott.springdataexample.repository.PersonRepositoryOverride;
+import net.raescott.springdataexample.repository.jpa.PersonRepositoryGenerated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
@@ -20,13 +21,14 @@ public class App {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 		BeanFactory beanFactory = applicationContext;
 		PersonDao personDao = (PersonDao) beanFactory.getBean("personDao");
-		PersonRepository personRepository = (PersonRepository) beanFactory.getBean("personRepository");
+		PersonRepositoryGenerated personRepositoryGenerated = (PersonRepositoryGenerated) beanFactory.getBean("personRepositoryGenerated");
+		PersonRepositoryOverride personRepositoryOverride = (PersonRepositoryOverride) beanFactory.getBean("personRepositoryOverride");
 
         logger.info("*** Insert Data ***");
-		Person person = new Person("scott", 5);
-		logger.info("Person: " + person);
-		personDao.persist(person);
-		logger.info("Person: " + person);
+		Person person1 = new Person("scott", 5);
+		logger.info("Person 1: " + person1);
+		personDao.persist(person1);
+		logger.info("Person: " + person1);
 
         logger.info("*** Named Query Results ***");
 		List<Person> personList1 = personDao.findAllNamedQuery();
@@ -38,9 +40,14 @@ public class App {
         logger.info("Person List: " + personList2);
         logger.info("Done.");
 
-		logger.info("*** Repository Query Results ***");
-		Person person2 = personRepository.findByName("scott");
+		logger.info("*** Generated Repository Query Results ***");
+		Person person2 = personRepositoryGenerated.findByName("scott");
 		logger.info("Person 2: " + person2);
+		logger.info("Done.");
+
+		logger.info("*** Override Repository Query Results ***");
+		Person person3 = personRepositoryOverride.findById("1");
+		logger.info("Person 3: " + person3);
 		logger.info("Done.");
 	}
 }

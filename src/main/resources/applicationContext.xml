@@ -90,7 +90,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<!-- JPA Repository Custom Finder Magic -->
-	<jpa:repositories base-package="net.raescott.springdataexample.repository" query-lookup-strategy="create-if-not-found" />
+	<jpa:repositories base-package="net.raescott.springdataexample.repository.jpa" query-lookup-strategy="create-if-not-found" />
 	<!--
 	<mongo:repositories base-package="net.raescott.springdataexample.repository.mongo" query-lookup-strategy="create-if-not-found" />
 	-->
