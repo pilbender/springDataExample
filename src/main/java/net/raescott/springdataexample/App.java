@@ -58,5 +58,10 @@ public class App {
 		List<Person> personList3 = personRepositoryGenerated.findAll();
 		logger.info("Person List 3: " + personList3);
 		logger.info("Done.");
+
+		logger.info("*** Override Repository with @Query Results ***");
+		Person person5 = personRepositoryGenerated.findByAge(5);
+		logger.info("Person 5: " + person5);
+		logger.info("Done.");
 	}
 }
