@@ -26,7 +26,7 @@ public class PersonRepositoryOverrideImpl implements PersonRepositoryOverride {
 		Person person = new Person(); // Null Object Pattern
 		try {
 			person = (Person) em.createNamedQuery("Person.findById")
-					.setParameter("id", "1")
+					.setParameter("id", id)
 					.getSingleResult();
 		} catch (NoResultException nre) {
 			// This is okay, it means the database was empty.
