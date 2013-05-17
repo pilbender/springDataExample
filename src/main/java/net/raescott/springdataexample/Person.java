@@ -11,9 +11,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "person")
 @NamedQueries({
-		// Person.findAll does not conform to proper naming so it does not override.
+	// Person.findAll does not conform to proper naming so it does not override.
 	@NamedQuery(name = "Person.findAll", query = "select p from Person p order by name"), // Never gets called, only the generated one is used.
-	@NamedQuery(name = "Person.findById", query = "select p from Person p where p.id = :id"),
+	@NamedQuery(name = "Person.findById", query = "select p from Person p where p.id = :id"), // Only called because of the Repository Implementation
 	/*
 	 * Person.findByName is intentionally wrong to show that this does override by using the proper naming
 	 */
