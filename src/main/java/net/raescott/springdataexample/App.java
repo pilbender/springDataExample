@@ -1,5 +1,6 @@
 package net.raescott.springdataexample;
 
+import net.raescott.springdataexample.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
@@ -19,6 +20,7 @@ public class App {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 		BeanFactory beanFactory = applicationContext;
 		PersonDao personDao = (PersonDao) beanFactory.getBean("personDao");
+		PersonRepository personRepository = (PersonRepository) beanFactory.getBean("personRepository");
 
         logger.info("*** Insert Data ***");
 		Person person = new Person("scott", 5);
@@ -35,5 +37,10 @@ public class App {
         List<Person> personList2 = personDao.findAllCriteriaQuery();
         logger.info("Person List: " + personList2);
         logger.info("Done.");
+
+		logger.info("*** Repository Query Results ***");
+		Person person2 = personRepository.findByName("scott");
+		logger.info("Person 2: " + person2);
+		logger.info("Done.");
 	}
 }
