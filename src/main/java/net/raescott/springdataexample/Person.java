@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name = "Person.findAll", query = "select p from Person p order by name"),
 	@NamedQuery(name = "Person.findById", query = "select p from Person p where p.id = :id"),
-	@NamedQuery(name = "Person.findByName", query = "select p from Person p where p.name = ?")
+	@NamedQuery(name = "Person.findByName", query = "select p from Person p where p.name = ?1")
 })
 public class Person implements Serializable {
 
