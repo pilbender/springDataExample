@@ -11,9 +11,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "person")
 @NamedQueries({
-	@NamedQuery(name = "Person.findAll", query = "select p from Person p order by name"),
+	@NamedQuery(name = "Person.findAll", query = "select p from Person p order by name"), // Never gets called, only the generated one is used.
 	@NamedQuery(name = "Person.findById", query = "select p from Person p where p.id = :id"),
-	@NamedQuery(name = "Person.findByName", query = "select p from Person p where p.name = ?1")
+	@NamedQuery(name = "Person.findByName", query = "select p from Person p where p.name != ?1") // Overrides the generated method
 })
 public class Person implements Serializable {
 
