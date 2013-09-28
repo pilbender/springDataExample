@@ -60,10 +60,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
 	</context:component-scan>
 	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="h2DataSource">
-		<property name="driverClassName" value="${database.driverClassName}"/>
-		<property name="url" value="${database.url}"/>
-		<property name="username" value="${database.username}"/>
-		<property name="password" value="${database.password}"/>
+		<property name="driverClassName" value="${h2.database.driverClassName}"/>
+		<property name="url" value="${h2.database.url}"/>
+		<property name="username" value="${h2.database.username}"/>
+		<property name="password" value="${h2.database.password}"/>
 		<property name="testOnBorrow" value="true"/>
 		<property name="testOnReturn" value="true"/>
 		<property name="testWhileIdle" value="true"/>
@@ -85,12 +85,39 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="h2EntityManagerFactory">
-		<property name="persistenceUnitName" value="persistenceUnit"/>
+		<property name="persistenceUnitName" value="h2PersistenceUnit"/>
 		<property name="dataSource" ref="h2DataSource"/>
 	</bean>
 
+	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="mysqlDataSource">
+		<property name="driverClassName" value="${mysql.database.driverClassName}"/>
+		<property name="url" value="${mysql.database.url}"/>
+		<property name="username" value="${mysql.database.username}"/>
+		<property name="password" value="${mysql.database.password}"/>
+		<property name="testOnBorrow" value="true"/>
+		<property name="testOnReturn" value="true"/>
+		<property name="testWhileIdle" value="true"/>
+		<property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+		<property name="numTestsPerEvictionRun" value="3"/>
+		<property name="minEvictableIdleTimeMillis" value="1800000"/>
+	</bean>
+
+	<tx:annotation-driven mode="aspectj" transaction-manager="mysqlTxManager" />
+	<bean id="mysqlTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="mysqlEntityManagerFactory"/>
+		<property name="dataSource" ref="mysqlDataSource"/>
+	</bean>
+
+	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="mysqlEntityManagerFactory">
+		<property name="persistenceUnitName" value="mysqlPersistenceUnit"/>
+		<property name="dataSource" ref="mysqlDataSource"/>
+	</bean>
+
 	<!-- JPA Repository Custom Finder Magic -->
-	<jpa:repositories base-package="net.raescott.springdataexample.repository.jpa" query-lookup-strategy="create-if-not-found" />
+	<jpa:repositories base-package="net.raescott.springdataexample.repository.jpa"
+					  entity-manager-factory-ref="h2EntityManagerFactory"
+					  transaction-manager-ref="h2TxManager"
+					  query-lookup-strategy="create-if-not-found" />
 	<!--
 	<mongo:repositories base-package="net.raescott.springdataexample.repository.mongo" query-lookup-strategy="create-if-not-found" />
 	-->

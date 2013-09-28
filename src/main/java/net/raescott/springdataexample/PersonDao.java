@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
 public class PersonDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
-	@PersistenceContext
+	@PersistenceContext(unitName = "h2PersistenceUnit")
 	EntityManager em;
 
 	@Transactional
