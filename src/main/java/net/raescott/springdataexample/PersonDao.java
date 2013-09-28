@@ -23,7 +23,7 @@ import java.util.List;
 public class PersonDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
-	@PersistenceContext(unitName = "h2PersistenceUnit")
+	@PersistenceContext(unitName = "mysqlPersistenceUnit")
 	EntityManager em;
 
 	@Transactional

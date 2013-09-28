@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Repository("personRepositoryOverride")
 public class PersonRepositoryOverrideImpl implements PersonRepositoryOverride {
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
-	@PersistenceContext(unitName = "h2PersistenceUnit")
+	@PersistenceContext(unitName = "mysqlPersistenceUnit")
 	EntityManager em;
 
 	@Override

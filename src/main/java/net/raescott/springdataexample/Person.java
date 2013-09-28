@@ -21,8 +21,9 @@ import javax.persistence.*;
 })
 public class Person implements Serializable {
 
-	@Id @GeneratedValue
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String name;
 	private int age;
 
@@ -38,14 +39,14 @@ public class Person implements Serializable {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
