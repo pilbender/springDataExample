@@ -59,7 +59,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<context:exclude-filter expression=".*_Roo_.*" type="regex"/>
 		<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
 	</context:component-scan>
-	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="h2DataSource">
 		<property name="driverClassName" value="${database.driverClassName}"/>
 		<property name="url" value="${database.url}"/>
 		<property name="username" value="${database.username}"/>
@@ -71,22 +71,22 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="numTestsPerEvictionRun" value="3"/>
 		<property name="minEvictableIdleTimeMillis" value="1800000"/>
 	</bean>
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager" >
+		<property name="entityManagerFactory" ref="h2EntityManagerFactory"/>
 	</bean>
 	<!--
 	<tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
 	-->
 	<!--<tx:annotation-driven mode="aspectj" transaction-manager="txManager" proxy-target-class="true" />-->
-	<tx:annotation-driven mode="aspectj" transaction-manager="txManager" />
-	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory"/>
-		<property name="dataSource" ref="dataSource"/>
+	<tx:annotation-driven mode="aspectj" transaction-manager="h2TxManager" />
+	<bean id="h2TxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="h2EntityManagerFactory"/>
+		<property name="dataSource" ref="h2DataSource"/>
 	</bean>
 
-	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="h2EntityManagerFactory">
 		<property name="persistenceUnitName" value="persistenceUnit"/>
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="h2DataSource"/>
 	</bean>
 
 	<!-- JPA Repository Custom Finder Magic -->
