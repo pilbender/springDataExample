@@ -21,7 +21,7 @@ public class PersonRepositoryOverrideImpl implements PersonRepositoryOverride {
 	EntityManager em;
 
 	@Override
-	@Transactional
+	@Transactional(value = "mysql")
 	public Person findById(String id) {
 		Person person = new Person(); // Null Object Pattern
 		try {

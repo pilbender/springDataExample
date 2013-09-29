@@ -26,7 +26,7 @@ public class PersonDao {
 	@PersistenceContext(unitName = "mysqlPersistenceUnit")
 	EntityManager em;
 
-	@Transactional
+	@Transactional(value = "mysql")
 	public List<Person> findAllNamedQuery() {
 		List<Person> personList = new LinkedList<Person>(); // Null Object Pattern
 		try {
@@ -38,7 +38,7 @@ public class PersonDao {
 		return personList;
 	}
 
-    @Transactional
+    @Transactional(value = "mysql")
     public List<Person> findAllCriteriaQuery() {
         List<Person> personList = new LinkedList<Person>(); // Null Object Pattern
         try {
@@ -54,12 +54,12 @@ public class PersonDao {
         return personList;
     }
 
-	@Transactional
+	@Transactional(value = "mysql")
 	public void persist(Person person) {
 		em.persist(person);
 	}
 
-	@Transactional
+	@Transactional(value = "mysql")
 	public Person merge(Person person) {
 		em.merge(person);
 		return person;
