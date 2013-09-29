@@ -23,10 +23,10 @@ import java.util.List;
 public class PersonDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
-	@PersistenceContext(unitName = "mysqlPersistenceUnit")
+	@PersistenceContext(unitName = "h2PersistenceUnit")
 	EntityManager em;
 
-	@Transactional(value = "mysql")
+	@Transactional(value = "h2")
 	public List<Person> findAllNamedQuery() {
 		List<Person> personList = new LinkedList<Person>(); // Null Object Pattern
 		try {
@@ -38,7 +38,7 @@ public class PersonDao {
 		return personList;
 	}
 
-    @Transactional(value = "mysql")
+    @Transactional(value = "h2")
     public List<Person> findAllCriteriaQuery() {
         List<Person> personList = new LinkedList<Person>(); // Null Object Pattern
         try {
@@ -54,12 +54,12 @@ public class PersonDao {
         return personList;
     }
 
-	@Transactional(value = "mysql")
+	@Transactional(value = "h2")
 	public void persist(Person person) {
 		em.persist(person);
 	}
 
-	@Transactional(value = "mysql")
+	@Transactional(value = "h2")
 	public Person merge(Person person) {
 		em.merge(person);
 		return person;

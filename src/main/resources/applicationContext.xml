@@ -117,8 +117,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
 	<!-- JPA Repository Custom Finder Magic -->
 	<jpa:repositories base-package="net.raescott.springdataexample.repository.jpa"
-					  entity-manager-factory-ref="mysqlEntityManagerFactory"
-					  transaction-manager-ref="mysqlTxManager"
+					  entity-manager-factory-ref="h2EntityManagerFactory"
+					  transaction-manager-ref="h2TxManager"
 					  query-lookup-strategy="create-if-not-found" />
 	<!--
 	<mongo:repositories base-package="net.raescott.springdataexample.repository.mongo" query-lookup-strategy="create-if-not-found" />

@@ -17,11 +17,11 @@ import javax.persistence.PersistenceContext;
 @Repository("personRepositoryOverride")
 public class PersonRepositoryOverrideImpl implements PersonRepositoryOverride {
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
-	@PersistenceContext(unitName = "mysqlPersistenceUnit")
+	@PersistenceContext(unitName = "h2PersistenceUnit")
 	EntityManager em;
 
 	@Override
-	@Transactional(value = "mysql")
+	@Transactional(value = "h2")
 	public Person findById(Integer id) {
 		Person person = new Person(); // Null Object Pattern
 		try {
