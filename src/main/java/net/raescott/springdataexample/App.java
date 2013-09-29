@@ -62,7 +62,7 @@ public class App {
 		logger.info("Expect: [scott]");
 		logger.info("Shows the interface and implementation override and call the @NamedQuery");
 		logger.info("personRepositoryOverride.findById(\"1\")");
-		Person person4 = personRepositoryOverride.findById("1");
+		Person person4 = personRepositoryOverride.findById(1);
 		logger.info("Person 4: " + person4);
 		logger.info("Done.");
 

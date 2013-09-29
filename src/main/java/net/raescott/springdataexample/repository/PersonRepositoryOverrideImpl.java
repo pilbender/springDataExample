@@ -22,7 +22,7 @@ public class PersonRepositoryOverrideImpl implements PersonRepositoryOverride {
 
 	@Override
 	@Transactional(value = "mysql")
-	public Person findById(String id) {
+	public Person findById(Integer id) {
 		Person person = new Person(); // Null Object Pattern
 		try {
 			person = (Person) em.createNamedQuery("Person.findById")

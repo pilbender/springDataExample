@@ -6,5 +6,5 @@ import net.raescott.springdataexample.Person;
  * @author Richard Scott Smith <scott.smith@isostech.com>
  */
 public interface PersonRepositoryOverride {
-	public Person findById(String id);
+	public Person findById(Integer id);
 }
