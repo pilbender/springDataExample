@@ -29,3 +29,12 @@ Configuration
  * mvn clean install
  * java -jar target/springDataExample-1.0-SNAPSHOT.jar
  * The output explains what should be expected along with the actual output.  Comments in code also describe what is happening.
+
+ Optional MySQL Configuration
+ ============================
+
+ * Open your MySQL prompt as the root user
+ * create database spring_data;
+ * create user spring_data;
+ * GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES, CREATE TEMPORARY TABLES ON `spring_data`.* TO 'spring_data'@'localhost' IDENTIFIED BY 'spring_data';
+ * flush privileges;
