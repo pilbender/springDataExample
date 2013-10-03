@@ -30,8 +30,8 @@ Configuration
  * java -jar target/springDataExample-1.0-SNAPSHOT.jar
  * The output explains what should be expected along with the actual output.  Comments in code also describe what is happening.
 
- Optional MySQL Configuration
- ============================
+Optional MySQL Configuration
+============================
 
  * Open your MySQL prompt as the root user
  * create database spring_data;
