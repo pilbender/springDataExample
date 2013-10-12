@@ -2,6 +2,7 @@ package net.raescott.springdataexample;
 
 import net.raescott.springdataexample.repository.PersonRepositoryOverride;
 import net.raescott.springdataexample.repository.jpa.PersonRepositoryGenerated;
+import net.raescott.springdataexample.repository.mongo.PersonMongoRepositoryGenerated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
@@ -23,6 +24,7 @@ public class App {
 		PersonDao personDao = (PersonDao) beanFactory.getBean("personDao");
 		PersonRepositoryGenerated personRepositoryGenerated = (PersonRepositoryGenerated) beanFactory.getBean("personRepositoryGenerated");
 		PersonRepositoryOverride personRepositoryOverride = (PersonRepositoryOverride) beanFactory.getBean("personRepositoryOverride");
+		PersonMongoRepositoryGenerated personMongoRepositoryGenerated= (PersonMongoRepositoryGenerated) beanFactory.getBean("personMongoRepositoryGenerated");
 
         logger.info("*** Insert Data ***");
 		Person person1 = new Person("scott", 5);
@@ -33,6 +35,12 @@ public class App {
 		logger.info("Person 2: " + person2);
 		personDao.persist(person2);
 		logger.info("Person 2: " + person2);
+
+		// Mongo Inserts
+		logger.info("Mongo Insert Person 1: " + person1);
+		personMongoRepositoryGenerated.save(person1);
+		logger.info("Mongo Insert Person 2: " + person2);
+		personMongoRepositoryGenerated.save(person2);
 
         logger.info("*** Named Query Results ***");
 		logger.info("Expect: [richard, scott]");
