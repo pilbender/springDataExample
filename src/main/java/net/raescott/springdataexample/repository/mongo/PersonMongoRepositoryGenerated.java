@@ -7,10 +7,9 @@ import org.springframework.data.repository.CrudRepository;
  * @author Richard Scott Smith <scott.smith@isostech.com>
  */
 public interface PersonMongoRepositoryGenerated extends CrudRepository<Person, String> {
-	/*
-	public Iterable<Person> findAll(String id);
-	public Iterable<Person> findById(String id);
+	// findAll can't be here because it is not a property to generate a method.
+	//public Iterable<Person> findAll(String id);
+	public Person findById(Integer id);
 	public Iterable<Person> findByName(String name);
-	public Iterable<Person> findByAge(String age);
-	*/
+	public Iterable<Person> findByAge(int age);
 }

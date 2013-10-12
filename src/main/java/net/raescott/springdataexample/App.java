@@ -89,5 +89,40 @@ public class App {
 		Person person5 = personRepositoryGenerated.findByAge(5);
 		logger.info("Person 5: " + person5);
 		logger.info("Done.");
+
+		logger.info("*** Mongo findAll() Results ***");
+		logger.info("Expect: [Person [id=1, name=scott, age=5], Person [id=2, name=richard, age=6]]");
+		logger.info("Show all the documents fetched from Mongo");
+		Iterable<Person> personList4 = personMongoRepositoryGenerated.findAll();
+		logger.info("PersonList 4: " + personList4);
+		logger.info("Done.");
+
+		logger.info("*** Mongo findById() Results ***");
+		logger.info("Expect: Person [id=1, name=scott, age=5]");
+		logger.info("Show the document that matches id 1");
+		Person person6 = personMongoRepositoryGenerated.findById(1);
+		logger.info("Person 6: " + person6);
+		logger.info("Done.");
+
+		logger.info("*** Mongo findById() Results ***");
+		logger.info("Expect: Person [id=2, name=richard, age=6]");
+		logger.info("Show the document that matches the id 2");
+		Person person7 = personMongoRepositoryGenerated.findById(2);
+		logger.info("Person 7: " + person7);
+		logger.info("Done.");
+
+		logger.info("*** Mongo findByName() Results ***");
+		logger.info("Expect: Person [id=1, name=scott, age=5]");
+		logger.info("Show all the documents that match a certain name");
+		Iterable<Person> personList5 = personMongoRepositoryGenerated.findByName("scott");
+		logger.info("PersonList 5: " + personList5);
+		logger.info("Done.");
+
+		logger.info("*** Mongo findByAge() Results ***");
+		logger.info("Expect: Person [id=2, name=richard, age=6]");
+		logger.info("Show all the documents that match a certain age");
+		Iterable<Person> personList6 = personMongoRepositoryGenerated.findByAge(6);
+		logger.info("PersonList 6: " + personList6);
+		logger.info("Done.");
 	}
 }
