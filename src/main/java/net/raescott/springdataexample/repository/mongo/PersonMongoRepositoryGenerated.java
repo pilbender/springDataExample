@@ -1,5 +1,6 @@
 package net.raescott.springdataexample.repository.mongo;
 
+import net.raescott.springdataexample.Person;
 import org.springframework.data.repository.CrudRepository;
 
 /**

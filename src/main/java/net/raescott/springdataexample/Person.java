@@ -27,9 +27,10 @@ import java.io.Serializable;
 	 */
 	@NamedQuery(name = "Person.findByName", query = "select p from Person p where p.name != ?1") // Overrides the generated method
 })
+@Document // For Mongo
 public class Person implements Serializable {
 
-	@Id
+	@Id // Also needed for Mongo
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
