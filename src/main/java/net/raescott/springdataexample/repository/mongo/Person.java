@@ -1,36 +1,19 @@
-package net.raescott.springdataexample;
+package net.raescott.springdataexample.repository.mongo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * Entity Bean.
+ * Mongo Document
  *
  * @author Richard Scott Smith <scott.smith@isostech.com>
  */
-@Entity
-@Table(name = "person")
-@NamedQueries({
-	// Person.findAll does not conform to proper naming so it does not override.
-	@NamedQuery(name = "Person.findAll", query = "select p from Person p order by name"), // Never gets called, only the generated one is used.
-	@NamedQuery(name = "Person.findById", query = "select p from Person p where p.id = :id"), // Only called because of the Repository Implementation
-	/*
-	 * Person.findByName is intentionally wrong to show that this does override by using the proper naming
-	 */
-	@NamedQuery(name = "Person.findByName", query = "select p from Person p where p.name != ?1") // Overrides the generated method
-})
+@Document // For Mongo
 public class Person implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id // Also needed for Mongo
 	private Integer id;
 	private String name;
 	private int age;
