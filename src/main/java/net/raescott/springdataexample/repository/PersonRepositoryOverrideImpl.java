@@ -16,13 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository("personRepositoryOverride")
 public class PersonRepositoryOverrideImpl implements PersonRepositoryOverride {
-<<<<<<< HEAD
-	private static final Logger logger = LoggerFactory.getLogger(App.class);
-	@PersistenceContext(unitName = "mysqlPersistenceUnit")
-=======
 	private static final Logger logger = LoggerFactory.getLogger(PersonRepositoryOverrideImpl.class);
-	@PersistenceContext(unitName = "h2PersistenceUnit")
->>>>>>> 1784bf2... Fixed the Logger in PersonRepositoryOverrideImpl.
+	@PersistenceContext(unitName = "mysqlPersistenceUnit")
 	EntityManager em;
 
 	@Override
