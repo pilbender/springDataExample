@@ -25,12 +25,11 @@
 		</repository>
 	</repositories>
 	<properties>
-		<aspectj.version>1.7.2</aspectj.version>
-		<java.version>1.6</java.version>
+		<aspectj.version>1.8.2</aspectj.version>
+		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<slf4j.version>1.6.4</slf4j.version>
-		<spring.version>3.1.1.RELEASE</spring.version>
-		<org.springframework.data-version>1.2.1.RELEASE</org.springframework.data-version>
+		<spring.version>4.1.6.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -99,15 +98,26 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<!-- Support for ehcache and others -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>1.10.0.RELEASE</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>${org.springframework.data-version}</version>
+			<version>1.8.0.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
-			<version>${org.springframework.data-version}</version>
+			<version>1.5.4.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -199,6 +209,12 @@
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
+		<!-- Java's new Caching API that vendors are now implementing -->
+		<dependency>
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+			<version>1.0.0-PFD</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -236,7 +252,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.0</version>
+				<version>2.1</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -289,7 +305,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.4</version>
+				<version>1.7</version>
 				<executions>
 					<execution>
 						<goals>
@@ -298,8 +314,7 @@
 							<goal>test-compile</goal>
 						</goals>
 						<configuration>
-							<source>1.6</source>
-							<target>1.6</target>
+							<complianceLevel>1.7</complianceLevel>
 							<!--Added for AspectJ @Transactional-->
 							<aspectLibraries>
 								<aspectLibrary>
